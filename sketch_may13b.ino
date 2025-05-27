@@ -5,6 +5,7 @@
 const byte ROWS = 4; 
 const byte COLS = 4; 
 
+//This assigns each key to a unique identifier, done this way so the buttons can be easily rotated, swapped ect.
 int hexaKeys[ROWS][COLS] = {
   {1, 2, 3, 4},
   {5, 6, 7, 8},
@@ -30,24 +31,24 @@ char commands[16][64] = {
   "#VID 3>1,3>2,3>3,3>4\r", //All into 3
   "#VID 4>1,4>2,4>3,4>4\r", // All into 4
 
-  //Second Row recall presets
+  //2nd Row More Customs
+  "#VID 1>1,3>2,1>3,1>4\r", //Blank
+  "#VID 3>1,1>2,3>3,3>4\r", //Blank
+  "#VID 0>1,0>2,0>3,0>4\r", //Blank
+  "#VID 0>1,0>2,0>3,0>4\r", //Blank
+
+  //Third Row recall presets 1-4
   "#PRST-RCL 1\r", 
   "#PRST-RCL 2\r",
   "#PRST-RCL 3\r",
   "#PRST-RCL 4\r",
 
-  //Third Row recall presets, 8 presets as maximum
+  //Third Row recall presets 5-8, 8 presets as maximum
   "#PRST-RCL 5\r",
   "#PRST-RCL 6\r",
   "#PRST-RCL 7\r",
   "#PRST-RCL 8\r",
-  
-  "#VID 0>1,0>2,0>3,0>4\r", //Blank
-  "#VID 0>1,0>2,0>3,0>4\r", //Blank
-  "#VID 0>1,0>2,0>3,0>4\r", //Blank
-  "#VID 0>1,0>2,0>3,0>4\r", //Blank
-
-  }
+};
 
 void setup(){
   // start communication with baud rate 9600
@@ -65,6 +66,6 @@ void loop(){
 
   if (customKey){
     //Need to add something close to a switch case here
-    mySerial.write("#VID 1>1,2>2,3>3,4>4\r");
+    mySerial.write(commands[customKey]);
   }
 }
