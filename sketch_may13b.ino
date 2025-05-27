@@ -64,8 +64,8 @@ void setup(){
 void loop(){
   char customKey = customKeypad.getKey();
 
+  //Literally just runs the command number as defined in the commands variable.
   if (customKey){
-    //Need to add something close to a switch case here
     mySerial.write(commands[customKey]);
   }
 }
